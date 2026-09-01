@@ -23,7 +23,7 @@ jobs:
 
       - name: Sync source files
         run: |
-          mkdir -p destination/TPSI/3BI
+          mkdir -p destination/TPSI/3AI
           rsync -av --delete \
             --exclude='.git' \
             --exclude='.github' \
@@ -40,7 +40,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           if ! git diff --quiet || ! git diff --staged --quiet; then
-            git commit -m "Sync 3BI: ${{ github.event.head_commit.message }}" \
+            git commit -m "Sync 3AI: ${{ github.event.head_commit.message }}" \
                        -m "From: ${{ github.repository }}@${{ github.sha }}"
             git push
           fi
