@@ -1,0 +1,20 @@
+@startuml
+''commento
+
+:Cliente: as c
+actor Banca as b
+
+rectangle "Sistema pagamento" {
+(pagare) as p
+(depositare) as d
+usecase s as "emettere scontrino"
+usecase sc as "applicare sconto"
+}
+
+c --> p
+c-->d
+b -- p
+d-b
+p ..> s : <<include>>
+p <.. sc : <<extend>>
+@enduml

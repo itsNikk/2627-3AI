@@ -1,0 +1,33 @@
+@startuml
+
+''left to right direction
+
+:Diportista: as d
+:Ormeggiatore: as o
+:Direttore Porto: as dp
+:Socio del Circolo: as sc
+
+'' confini del sistema
+rectangle Porto {
+    (Effetuare pagamento) as pay
+    usecase po as "
+        Prenotare ormeggio
+        --
+        E.P.: se alta stagione
+    "
+
+    (Calcolare supplemento alta stagione) as sas
+    (Prenotare ormeggio giornaliero) as pog
+    (Prenotare ormeggio settimanale) as pos
+}
+
+''CTRL+D = duplica linea
+
+d -- po
+po ..> pay : <<include>>
+po <|-- pos
+po <|-- pog
+
+po <.. sas : <<extend>>
+
+@enduml
