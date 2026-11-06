@@ -1,0 +1,36 @@
+@startuml
+
+left to right direction
+
+:Utente: as u
+:Personale: as pers
+:Operatore flotta: as opF
+:Tecnico manutenzione: as tm
+
+rectangle CityDrive {
+    (Sbloccare veicolo) as sv
+    usecase p as "
+        Prenotare veicolo
+        --
+            E.P.: se disponibili e richiesti
+    "
+    (Aggiungere accessori) as aa
+    (Verifica posizione di pagamento) as vp
+    (Gestire disponibilità veicoli) as gdv
+    (Eseguire intervento) as ei
+    (Accedere area riservata) as aar
+}
+
+tm -- ei
+opF -- gdv
+
+pers <|-- tm
+pers <|-- opF
+
+pers -- aar
+
+u -- sv
+u -- p
+p <.. aa : <<extend>>
+sv ..> vp : <<include>>
+@enduml
