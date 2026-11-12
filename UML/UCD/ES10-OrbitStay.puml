@@ -1,0 +1,28 @@
+@startuml
+:Turista: as t
+:Ingnegnere: as i
+:Comandante: as c
+:Equipaggio: as e
+
+
+rectangle OS {
+ ''(Prenotare modulo) as pm
+ usecase pm as "
+ Prenotare modulo
+ --
+ E.P.: se slot disponibile e certificazione EVA valida
+ "
+ (Verificare certificazione medica) as vcm
+ (Aggiungere attività EVA) as aae
+ (Accedere al modulo) as aam
+}
+
+i --|> e
+c --|> e
+
+pm <.. aae : <<extend>>
+
+t -- aam
+t -- pm
+aam ..> vcm : <<include>>
+@enduml
